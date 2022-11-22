@@ -14,24 +14,6 @@
       });
         
       FB.AppEvents.logPageView();
-
-      function checkLoginState() {
-        FB.getLoginStatus(function(response) {
-          statusChangeCallback(response);
-        });
-      }
-
-      function statusChangeCallback(response) {
-        if (response.status === 'connected') {
-          console.log('connected', response);
-        } else if (response.status === 'not_authorized') {
-          console.log('not_authorized');
-          FB.login()
-        } else if (response.status === 'unknown') {
-          console.log('unknown');
-          FB.login()
-        }
-      };
     };
   
     (function(d, s, id){
@@ -41,6 +23,24 @@
       js.src = "https://connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
      }(document, 'script', 'facebook-jssdk'));
+
+    function checkLoginState() {
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+    }
+
+    function statusChangeCallback(response) {
+      if (response.status === 'connected') {
+        console.log('connected', response);
+      } else if (response.status === 'not_authorized') {
+        console.log('not_authorized');
+        FB.login()
+      } else if (response.status === 'unknown') {
+        console.log('unknown');
+        FB.login()
+      }
+    };
   </script>
 </head>
 
