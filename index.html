@@ -37,6 +37,9 @@
       function statusChangeCallback(response) {
         if (response.status === 'connected') {
           console.log('connected', response);
+          FB.logout(function(response) {
+            console.log('logout response', response);
+          });
         } else if (response.status === 'not_authorized') {
           console.log('not_authorized');
           FB.login()
