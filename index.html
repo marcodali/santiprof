@@ -6,57 +6,54 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>Profe Santi</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '650201189911967',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v2.7'
+      });
+        
+      FB.AppEvents.logPageView();   
+        
+    };
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+  
+    $(function(){
+      console.log('hola');
+  
+      var statusChangeCallback = function(response) {
+        if (response.status === 'connected') {
+          console.log('connected', response);
+        } else if (response.status === 'not_authorized') {
+          console.log('not_authorized');
+          FB.login()
+        } else if (response.status === 'unknown') {
+          console.log('unknown');
+          FB.login()
+        }
+      };
+  
+      console.log('mundo');
+      
+      var checkLoginState = function() {
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+      }
+    });
+  </script>
 </head>
 
 <body>
-
-  <!-- <div id="fb-root"></div>
-  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v15.0&appId=650201189911967&autoLogAppEvents=1" nonce="8CMlbPhn"></script> -->
-
-<!-- html script tag starts here -->
-  
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '650201189911967',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v2.7'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-  $(function(){
-    var statusChangeCallback = function(response) {
-      if (response.status === 'connected') {
-        console.log('connected', response);
-      } else if (response.status === 'not_authorized') {
-        console.log('not_authorized');
-        FB.login()
-      } else if (response.status === 'unknown') {
-        console.log('unknown');
-        FB.login()
-      }
-    };
-    
-    var checkLoginState = function() {
-      FB.getLoginStatus(function(response) {
-        statusChangeCallback(response);
-      });
-    }
-  });
-</script>
-  <!-- html script tag ends here -->
 
 	<header>
 		<nav>
