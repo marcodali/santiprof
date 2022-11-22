@@ -20,17 +20,19 @@
     };
   
     (function(d, s, id){
-       var js, fjs = d.getElementsByTagName(s)[0];
-       if (d.getElementById(id)) {return;}
-       js = d.createElement(s); js.id = id;
-       js.src = "https://connect.facebook.net/en_US/sdk.js";
-       fjs.parentNode.insertBefore(js, fjs);
-     }(document, 'script', 'facebook-jssdk'));
-  
-    $(function(){
-      console.log('hola');
-  
-      var statusChangeCallback = function(response) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      function checkLoginState() {
+        FB.getLoginStatus(function(response) {
+          statusChangeCallback(response);
+        });
+      }
+
+      function statusChangeCallback(response) {
         if (response.status === 'connected') {
           console.log('connected', response);
         } else if (response.status === 'not_authorized') {
@@ -41,14 +43,14 @@
           FB.login()
         }
       };
+
+      console.log('bye', checkLoginState);
+      console.log('world', statusChangeCallback);
+     }(document, 'script', 'facebook-jssdk'));
   
-      console.log('mundo');
-      
-      var checkLoginState = function() {
-        FB.getLoginStatus(function(response) {
-          statusChangeCallback(response);
-        });
-      }
+    $(function(){
+      console.log('hola', checkLoginState);
+      console.log('mundo', statusChangeCallback);
     });
   </script>
 </head>
